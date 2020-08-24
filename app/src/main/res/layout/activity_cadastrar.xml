@@ -16,7 +16,8 @@
         android:id="@+id/editText_EmailCadastro"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:hint="Insira um e-mail"/>
+        android:hint="Insira um e-mail"
+        />
 
 
     <TextView
@@ -28,7 +29,8 @@
         android:id="@+id/editText_SenhaCadastro"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:hint="Insira uma senha"/>
+        android:hint="Insira uma senha"
+        android:password="true"/>
 
     <TextView
         android:layout_height="wrap_content"
@@ -39,7 +41,8 @@
         android:id="@+id/editText_SenhaRepetirCadastro"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:hint="Repita sua senha"/>
+        android:hint="Repita sua senha"
+        android:password="true"/>
 
     <Button
         android:id="@+id/button_CadastrarUsuario"
