@@ -1,8 +1,13 @@
 package com.example.firebaseautenticacao.ui.cadastrar
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.firebaseautenticacao.R
@@ -17,29 +22,30 @@ class CadastrarActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cadastrar)
 
         button_CadastrarUsuario.setOnClickListener {
-            var email = editText_EmailCadastro.getText().toString().trim()
-            var senha = editText_SenhaCadastro.getText().toString().trim()
-            var confirmarSenha = editText_SenhaRepetirCadastro.getText().toString().trim()
-            cadastrar(email, senha, confirmarSenha)
+            cadastrar(
+                editText_EmailCadastro.getText().toString().trim(),
+                editText_SenhaCadastro.getText().toString().trim(),
+                editText_SenhaRepetirCadastro.getText().toString().trim()
+            )
         }
         button_Cancelar.setOnClickListener {
             finish()
         }
-
-
     }
 
     fun cadastrar(email: String, senha: String, confirmarSenha: String) {
         if (email.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty()) {
             Toast.makeText(this, "Preencha os campos corretamente!!!", Toast.LENGTH_LONG).show()
-
         } else {
             if (senha.contentEquals(confirmarSenha)) {
-                criarUsuario(email, senha)
+                if (verificarInternet()) {
+                    criarUsuario(email, senha)
+                } else {
+                    Toast.makeText(this, "Verifique sua internet", Toast.LENGTH_LONG).show()
+                }
             } else {
                 Toast.makeText(this, "As senhas devem ser iguais!", Toast.LENGTH_LONG).show()
             }
-
         }
     }
 
@@ -49,17 +55,36 @@ class CadastrarActivity : AppCompatActivity() {
                 Toast.makeText(this, "Cadastrado com sucesso.", Toast.LENGTH_LONG).show()
                 finish()
             } else {
-                Toast.makeText(this, "Não foi possível cadastrar, Tente novamente!.", Toast.LENGTH_LONG).show()
+                opcoesErro(it.exception.toString())
             }
         }
-
     }
 
-//    private fun setupSplashViewModel() {
-//        viewModel = viewModelFactory {
-//            ViewModelProvider(this,
-//                CadastrarActivityViewModelFactory
-//            ).get(CadastrarActivivtyViewModel::class.java)
-//        }
-//    }
+    private fun opcoesErro(resposta: String) {
+        if (resposta.contains("least 6 characters")) {
+            Toast.makeText(this, "Crie uma senha maior que 5 dígitos.", Toast.LENGTH_LONG)
+                .show()
+
+        } else if (resposta.contains("address is badly")) {
+            Toast.makeText(this, "E-mail inválido.", Toast.LENGTH_LONG).show()
+
+        } else if (resposta.contains("interrupted connection")) {
+            Toast.makeText(this, "Sem conexão com o Banco de dados (Firebase)", Toast.LENGTH_LONG).show()
+
+        } else {
+            Log.d("TAG", resposta)
+            Toast.makeText(
+                this, "Ocorreu um erro inesperado, por favor, tente novamente mais tarde",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    private fun verificarInternet(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE)
+        return if (connectivityManager is ConnectivityManager) {
+            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+            networkInfo?.isConnected ?: false
+        } else false
+    }
 }
