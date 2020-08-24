@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="E-mail*"/>
+
+    <EditText
+        android:id="@+id/editText_EmailCadastro"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="Insira um e-mail"/>
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Senha*"
+        android:layout_marginTop="15dp"/>
+    <EditText
+        android:id="@+id/editText_SenhaCadastro"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="Insira uma senha"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Repita sua senha*"
+        android:layout_marginTop="15dp"/>
+    <EditText
+        android:id="@+id/editText_SenhaRepetirCadastro"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="Repita sua senha"/>
+
+    <Button
+        android:id="@+id/button_CadastrarUsuario"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Cadastrar"
+        android:layout_marginTop="15dp"
+        android:textAllCaps="false"/>/>
+    <Button
+        android:id="@+id/button_Cancelar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Cancelar"
+        android:textAllCaps="false"/>
+</LinearLayout>
