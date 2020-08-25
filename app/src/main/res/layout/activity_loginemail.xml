@@ -28,7 +28,8 @@
         android:id="@+id/editText_SenhaLogin"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:hint="Insira uma senha"/>
+        android:hint="Insira uma senha"
+        android:password="true"/>
 
 
     <Button
