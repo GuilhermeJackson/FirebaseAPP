@@ -72,7 +72,7 @@ class CadastrarActivity : AppCompatActivity() {
             Toast.makeText(this, "Sem conexão com o Banco de dados (Firebase)", Toast.LENGTH_LONG).show()
 
         } else {
-            Log.d("TAG", resposta)
+            Log.d("ERRO cadastrar", resposta)
             Toast.makeText(
                 this, "Ocorreu um erro inesperado, por favor, tente novamente mais tarde",
                 Toast.LENGTH_LONG

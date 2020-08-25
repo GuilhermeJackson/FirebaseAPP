@@ -13,8 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         button_login.setOnClickListener {
-            intent = Intent(this, LoginEmailActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, LoginEmailActivity::class.java))
         }
 
         button_cadastrar.setOnClickListener {
