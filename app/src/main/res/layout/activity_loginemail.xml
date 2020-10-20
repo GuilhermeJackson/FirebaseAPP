@@ -40,4 +40,12 @@
         android:layout_marginTop="15dp"
         android:textAllCaps="false"/>
 
+    <Button
+        android:id="@+id/button_Recuperar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Recuperar"
+        android:layout_marginTop="15dp"
+        android:textAllCaps="false"/>
+
 </LinearLayout>

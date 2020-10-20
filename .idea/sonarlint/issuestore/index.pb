@@ -23,3 +23,5 @@ H
 dapp/src/main/java/com/example/firebaseautenticacao/ui/cadastrar/CadastrarActivityViewModelFactory.kt,8\d\8d7a109e2981509bfd68361208afeb3154962d0f
 y
 Iapp/src/main/java/com/example/firebaseautenticacao/data/UserRepository.kt,8\3\837286b4ce2a61758f0758e1ee16352b1d27953e
+|
+Lapp/src/main/java/com/example/firebaseautenticacao/util/ValidacaoFirebase.kt,2\b\2bc426000952e77088495ef19ee6b92810b51f29

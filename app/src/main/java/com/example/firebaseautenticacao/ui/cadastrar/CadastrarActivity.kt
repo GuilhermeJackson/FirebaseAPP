@@ -11,6 +11,9 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.firebaseautenticacao.R
+import com.example.firebaseautenticacao.util.ValidacaoFirebase
+import com.example.firebaseautenticacao.util.ValidacaoFirebase.Companion.opcoesErro
+import com.example.firebaseautenticacao.util.ValidacaoFirebase.Companion.verificarInternet
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_cadastrar.*
 
@@ -38,7 +41,7 @@ class CadastrarActivity : AppCompatActivity() {
             Toast.makeText(this, "Preencha os campos corretamente!!!", Toast.LENGTH_LONG).show()
         } else {
             if (senha.contentEquals(confirmarSenha)) {
-                if (verificarInternet()) {
+                if (verificarInternet(this)) {
                     criarUsuario(email, senha)
                 } else {
                     Toast.makeText(this, "Verifique sua internet", Toast.LENGTH_LONG).show()
@@ -55,36 +58,8 @@ class CadastrarActivity : AppCompatActivity() {
                 Toast.makeText(this, "Cadastrado com sucesso.", Toast.LENGTH_LONG).show()
                 finish()
             } else {
-                opcoesErro(it.exception.toString())
+                opcoesErro(this, it.exception.toString())
             }
         }
-    }
-
-    private fun opcoesErro(resposta: String) {
-        if (resposta.contains("least 6 characters")) {
-            Toast.makeText(this, "Crie uma senha maior que 5 dígitos.", Toast.LENGTH_LONG)
-                .show()
-
-        } else if (resposta.contains("address is badly")) {
-            Toast.makeText(this, "E-mail inválido.", Toast.LENGTH_LONG).show()
-
-        } else if (resposta.contains("interrupted connection")) {
-            Toast.makeText(this, "Sem conexão com o Banco de dados (Firebase)", Toast.LENGTH_LONG).show()
-
-        } else {
-            Log.d("ERRO cadastrar", resposta)
-            Toast.makeText(
-                this, "Ocorreu um erro inesperado, por favor, tente novamente mais tarde",
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
-
-    private fun verificarInternet(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE)
-        return if (connectivityManager is ConnectivityManager) {
-            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
-            networkInfo?.isConnected ?: false
-        } else false
     }
 }
