@@ -15,7 +15,7 @@ class PrincipalActivity : AppCompatActivity() {
         setContentView(R.layout.activity_principal)
 
         button_deslogar.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
+            auth.signOut()
             finish()
         }
     }

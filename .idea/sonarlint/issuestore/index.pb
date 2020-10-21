@@ -5,8 +5,6 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 {
 Kapp/src/main/java/com/example/firebaseautenticacao/ui/LoginEmailActivity.kt,1\2\12c17ba55177ca37ecb3e1dd97c4f8fab17c7e6e
-y
-Iapp/src/main/java/com/example/firebaseautenticacao/ui/AberturaActivity.kt,f\d\fd0f68d71def347f447865cd9b707278b087fdcd
 z
 Japp/src/main/java/com/example/firebaseautenticacao/ui/PrincipalActivity.kt,b\e\bea1f563ff4844d9cf34c9538e2227e1342b79f4
 u
