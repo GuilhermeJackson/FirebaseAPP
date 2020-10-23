@@ -36,6 +36,11 @@ class ValidacaoFirebase {
             } else if (resposta.contains("There is no user")) {
                 Toast.makeText(context, "Este e-mail não está cadastrado.", Toast.LENGTH_LONG).show()
 
+            } else if(resposta.contains("There is no user record corresponding to this identifier.")){
+                Toast.makeText(context, "E-mail não encontrado", Toast.LENGTH_LONG).show()
+
+            } else if(resposta.contains("EMAIL_NOT_FOUND")){
+                Toast.makeText(context, "E-mail não cadastrado ainda", Toast.LENGTH_LONG).show()
             } else {
                 Log.d("ERRO Firebase", resposta)
                 Toast.makeText(

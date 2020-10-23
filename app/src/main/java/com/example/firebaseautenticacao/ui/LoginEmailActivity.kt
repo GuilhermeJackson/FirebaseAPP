@@ -24,8 +24,25 @@ class LoginEmailActivity : AppCompatActivity() {
             )
         }
 
-        button_Recuperar.setOnClickListener{
+        button_Recuperar.setOnClickListener {
+            recuperarSenha()
+        }
+    }
 
+    private fun recuperarSenha() {
+        val emailEdiText = editText_EmailLogin.text.toString().trim()
+        if (emailEdiText.isEmpty()) {
+            Toast.makeText(this, "Insira seu e-mail para poder recuperar a sua senha", Toast.LENGTH_LONG).show()
+        } else {
+            enviarEmail(emailEdiText)
+        }
+    }
+
+    private fun enviarEmail(email: String){
+        auth.sendPasswordResetEmail(email).addOnSuccessListener{
+            Toast.makeText(this, "Enviamos uma MSG para o seu e-mail com um link para redefinir senha", Toast.LENGTH_LONG).show()
+        }.addOnFailureListener{
+            opcoesErro(this, it.toString())
         }
     }
 
